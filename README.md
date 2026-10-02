@@ -42,7 +42,7 @@ Making the lifecycle functionally correct was not enough—the transition also h
 
 When a Mass NPC becomes a replicated RealActor, the server-authoritative Actor position can differ from the client's still-moving Mass representation, causing visible jitter if the replicated position is applied directly.
 
-I customized the Character Movement network synchronization path to preserve visual continuity during takeover: small positional differences are temporarily absorbed while rotation continues to synchronize, allowing the client to transition without repeatedly snapping to the server position.
+I customized the Character Movement Component (CMC) network synchronization path to preserve visual continuity during takeover: small positional differences are temporarily absorbed while rotation continues to synchronize, allowing the client to transition without repeatedly snapping to the server position.
 
 ### Animation Continuity
 
