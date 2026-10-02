@@ -32,3 +32,15 @@ Building this architecture for multiplayer required several framework-level fixe
 - **Client Entity Removal** — Fixed replicated Mass Entities remaining alive on remote clients after server-side destruction.
 - **Multiplayer ZoneGraph Navigation** — Extended the default ZoneGraph navigation path to support server-authoritative multiplayer NPC movement.
 - **Representation Release** — Fixed an internal issue in `ReleaseTemplateActorOrCancelSpawning()` and implemented a safe release path for Mass → RealActor takeover.
+
+## Seamless Mass ↔ RealActor Integration
+
+Making the lifecycle functionally correct was not enough—the transition also had to remain visually continuous across multiplayer replication and independent animation instances.
+
+### Spatial Continuity
+
+During Mass → RealActor takeover, the client-side Mass representation may continue moving before the replicated RealActor reaches the client, creating a visible position mismatch. I preserve the visual offset during takeover and let Character Movement network correction converge smoothly toward the server-authoritative state instead of snapping immediately.
+
+### Animation Continuity
+
+Mass representations and RealActors use independent animation instances, so a direct handoff can cause visible animation discontinuity. I transfer locomotion parameters and semantic animation state across the transition, allowing the destination animation instance to resume from a matching gameplay state.
