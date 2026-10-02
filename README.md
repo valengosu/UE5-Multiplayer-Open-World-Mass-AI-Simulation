@@ -19,3 +19,15 @@ Instead of maintaining a fixed number of NPCs across the entire map, the populat
 As players move through the world, the system continuously compares the **desired population** against the current population and performs **Spawn, Recycle, and Rebalance** operations to maintain local density.
 
 This keeps the active NPC workload tied primarily to **player-relevant areas and local density**, rather than directly scaling with the total size of the open world.
+
+### Mass Simulation & Representation
+
+NPCs inside the active population are simulated as lightweight **Mass Entities**, allowing large numbers of agents to exist without the cost of maintaining full Characters, Actor-based AI, animation, collision, and replication for every NPC.
+
+**Simulation LOD** and **Representation LOD** independently control how much simulation and visual representation each NPC receives based on its relevance to active players. Nearby NPCs can use higher-fidelity skeletal representations, while less relevant NPCs fall back to cheaper representations or are removed from visualization entirely.
+
+In multiplayer, the **server remains authoritative over NPC simulation and population decisions**, while Mass replication maintains the corresponding client-side entities and their local representations.
+
+This creates a scalable runtime hierarchy:
+
+**Population Management → Mass Simulation → LOD / Representation → Client Visualization**
