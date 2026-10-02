@@ -22,7 +22,7 @@ Gameplay events dynamically upgrade relevant Mass NPCs into replicated **RealAct
 
 **Population → Mass → Gameplay Event → RealActor → AI / Gameplay → Mass**
 
-Gameplay events can be generated concurrently during multi-threaded Mass processing. A lock-free double-buffered pipeline collects them without blocking worker threads, then transfers them to the Game Thread after the Mass processing phase for Actor lifecycle operations.
+**Gameplay events can be generated concurrently during multi-threaded Mass processing. A lock-free double-buffered pipeline collects them without blocking worker threads, then transfers them to the Game Thread after the Mass processing phase for Actor lifecycle operations.**
 
 ## UE5.7 Mass Framework Fixes
 
