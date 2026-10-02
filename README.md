@@ -38,7 +38,9 @@ Making the lifecycle functionally correct was not enough—the transition also h
 
 ### Spatial Continuity
 
-During Mass → RealActor takeover, the client-side Mass representation may continue moving before the replicated RealActor reaches the client, creating a visible position mismatch. I compensate for this offset during takeover and use Character Movement network correction to converge smoothly toward the server-authoritative state instead of snapping immediately.
+When a Mass NPC becomes a replicated RealActor, the server-authoritative Actor position can differ from the client's still-moving Mass representation, causing visible jitter if the replicated position is applied directly.
+
+I customized the Character Movement network synchronization path to preserve visual continuity during takeover: small positional differences are temporarily absorbed while rotation continues to synchronize, allowing the client to transition without repeatedly snapping to the server position.
 
 ### Animation Continuity
 
