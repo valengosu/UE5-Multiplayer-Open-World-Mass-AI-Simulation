@@ -2,8 +2,7 @@
 
 A scalable multiplayer NPC simulation system combining dynamic population management, Mass simulation, and full gameplay interaction.
 
-Problem
-Large multiplayer open worlds need many persistent NPCs, but running every NPC as a full gameplay Actor with Character movement, collision, animation, AI, and replication does not scale.
+**Problem:** Large multiplayer open worlds need many persistent NPCs, but running every NPC as a full gameplay Actor with Character movement, collision, animation, AI, and replication does not scale.
 
 This demo solves that problem by keeping the wider population in lightweight Mass simulation and dynamically promoting only gameplay-relevant NPCs to full replicated Actors.
 
@@ -23,7 +22,7 @@ Gameplay events dynamically upgrade relevant Mass NPCs into replicated **RealAct
 
 **Population → Mass → Gameplay Event → RealActor → AI / Gameplay → Mass**
 
-**Events generated during parallel Mass processing cross to the **Game Thread** through a double-buffered pipeline after the Mass processing phase.**
+Events generated during parallel Mass processing cross to the **Game Thread** through a **double-buffered pipeline** after the Mass processing phase.
 
 ## UE5.7 Mass Framework Fixes
 
@@ -39,8 +38,8 @@ Making the lifecycle functionally correct was not enough—the transition also h
 
 ### Spatial Continuity
 
-During Mass → RealActor takeover, the client-side Mass representation may continue moving before the replicated RealActor reaches the client, creating a visible position mismatch. I preserve the visual offset during takeover and let Character Movement network correction converge smoothly toward the server-authoritative state instead of snapping immediately.
+During Mass → RealActor takeover, the client-side Mass representation may continue moving before the replicated RealActor reaches the client, creating a visible position mismatch. I compensate for this offset during takeover and use Character Movement network correction to converge smoothly toward the server-authoritative state instead of snapping immediately.
 
 ### Animation Continuity
 
-Mass representations and RealActors use independent animation instances, so a direct handoff can cause visible animation discontinuity. I transfer locomotion parameters and semantic animation state across the transition, allowing the destination animation instance to resume from a matching gameplay state.
+Mass representations and RealActors use independent animation instances, so a direct handoff can cause visible animation discontinuity. I transfer locomotion parameters and semantic animation state across the transition, allowing the destination animation instance to enter a matching gameplay state.
