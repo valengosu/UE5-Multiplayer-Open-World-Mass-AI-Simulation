@@ -18,7 +18,7 @@ Gameplay events dynamically upgrade relevant Mass NPCs into replicated **RealAct
 
 **Population → Mass → Gameplay Event → RealActor → AI / Gameplay → Mass**
 
-Events generated during parallel Mass processing cross to the **Game Thread** through a double-buffered pipeline after the Mass processing phase.
+**Events generated during parallel Mass processing cross to the **Game Thread** through a double-buffered pipeline after the Mass processing phase.**
 
 ## UE5.7 Mass Framework Fixes
 
