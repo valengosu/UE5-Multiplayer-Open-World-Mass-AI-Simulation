@@ -28,9 +28,9 @@ Events generated during parallel Mass processing cross to the **Game Thread** th
 
 Building this architecture for multiplayer required several framework-level fixes and extensions:
 
-- **Client Entity Removal** — Fixed replicated Mass Entities remaining alive on remote clients after server-side destruction.
-- **Multiplayer ZoneGraph Navigation** — Extended the default ZoneGraph navigation path to support server-authoritative multiplayer NPC movement.
-- **Representation Release** — Fixed an internal issue in `ReleaseTemplateActorOrCancelSpawning()` and implemented a safe release path for Mass → RealActor takeover.
+- **Client Entity Removal** — Fixed replicated Mass Entities remaining alive on remote clients after server-side destruction by correcting the client-bubble removal path.
+- **Multiplayer ZoneGraph Navigation** — Extended the default ZoneGraph navigation path to support multiple player-driven navigation contexts in a server-authoritative multiplayer world.
+- **Representation Release** — Traced a takeover failure to an internal issue in UE5.7's `ReleaseTemplateActorOrCancelSpawning()` and implemented a corrected release path for Mass → RealActor transitions.
 
 ## Seamless Mass ↔ RealActor Integration
 
