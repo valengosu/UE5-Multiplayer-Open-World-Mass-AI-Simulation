@@ -1,3 +1,9 @@
+## Problem
+
+Large multiplayer open worlds need many persistent NPCs, but running every NPC as a full gameplay Actor with Character movement, collision, animation, AI, and replication does not scale.
+
+This demo solves that problem by keeping the wider population in lightweight Mass simulation and dynamically promoting only gameplay-relevant NPCs to full replicated Actors.
+
 # UE5 Multiplayer Open-World Mass AI Simulation
 
 A scalable multiplayer NPC simulation system combining dynamic population management, Mass simulation, and full gameplay interaction.
