@@ -20,7 +20,7 @@ I extended the Mass replication strategy with **configurable synchronization thr
 
 ### Gameplay-Driven Mass ↔ RealActor Lifecycle
 
-Gameplay events dynamically upgrade relevant Mass NPCs into replicated RealActors with full movement, collision, animation, and AI. When the interaction ends, the RealActor hands control back to the corresponding Mass Entity, restoring its transform and lightweight representation.
+Gameplay events dynamically upgrade relevant Mass NPCs into replicated **RealActors** with full movement, collision, animation, and AI. When the interaction ends, the RealActor hands control back to the corresponding Mass Entity, restoring its transform and lightweight representation.
 
 **Population → Mass → Gameplay Event → RealActor → AI / Gameplay → Mass**
 
