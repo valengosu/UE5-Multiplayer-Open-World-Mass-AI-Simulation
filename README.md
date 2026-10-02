@@ -45,3 +45,7 @@ I customized the Character Movement network synchronization path to preserve vis
 ### Animation Continuity
 
 Mass representations and RealActors use independent animation instances, so a direct handoff can cause visible animation discontinuity. I transfer locomotion parameters and semantic animation state across the transition, allowing the destination animation instance to enter a matching gameplay state.
+
+## Tech Stack
+
+Unreal Engine 5.7 · C++ · Mass Entity · ZoneGraph · World Partition · HLOD · Multiplayer Replication · Behavior Tree
