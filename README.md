@@ -24,4 +24,4 @@ Gameplay events can dynamically upgrade relevant Mass NPCs into replicated **Rea
 
 **Population → Mass → Gameplay Event → RealActor → AI / Gameplay → Mass**
 
-Gameplay events cross the Mass processing boundary through a **double-buffered pipeline**, with lifecycle operations synchronized before execution on the Game Thread.
+Gameplay events generated during parallel Mass processing are collected through a **double-buffered pipeline** and consumed on the **Game Thread after the Mass processing phase**, avoiding unsafe cross-thread Actor operations.
