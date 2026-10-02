@@ -1,33 +1,17 @@
-A scalable multiplayer NPC simulation system built with Unreal Engine 5, designed to support large open-world populations while allowing lightweight NPCs to dynamically enter and leave full gameplay.
+# UE5 Multiplayer Open-World Mass AI Simulation
 
-<!-- Demo GIF / Video -->
+A scalable multiplayer NPC simulation system for large open worlds, combining dynamic population management with lightweight simulation and full gameplay interaction.
 
 ## Overview
 
-Large open-world NPC systems need to balance three competing requirements: **large populations, limited runtime budgets, and full multiplayer gameplay**.
+Large open-world NPC systems must support **large populations, limited runtime budgets, and multiplayer gameplay**. Keeping every NPC as a full Character with AI, animation, collision, and networking is too expensive, while lightweight simulation alone cannot support NPCs that need to enter full gameplay dynamically.
 
-Keeping every NPC as a fully simulated Character with AI, animation, collision, and network replication does not scale well as population size increases. However, lightweight simulation alone is not sufficient when NPCs need to dynamically participate in full gameplay interactions.
+This project uses a hybrid architecture that maintains large NPC populations through lightweight simulation and dynamically converts relevant NPCs into full gameplay actors when needed.
 
-This project addresses that problem with a hybrid architecture: NPCs normally run as lightweight **Mass Entities**, then dynamically transition to fully replicated **RealActors** when gameplay requires full AI and interaction. After the interaction ends, they can return to Mass simulation.
+## Open-World Population
 
-**Population → Mass Simulation → Gameplay Event → RealActor → Full AI / Gameplay → Mass**
+The environment uses **World Partition and HLOD** for large-world streaming, while NPC population is managed dynamically around active players.
 
-The world is built on **World Partition** and **HLOD** to keep large environments streamable, while NPC population is managed independently from world size.
+The population system evaluates valid **ZoneGraph lane space** and configurable density to determine the desired NPC population, then performs **Spawn, Recycle, and Rebalance** as players move through the world.
 
-Instead of maintaining a fixed number of NPCs across the entire map, the population system evaluates the **ZoneGraph lane space around active players** and uses configurable population density to determine how many NPCs should exist in each relevant area.
-
-As players move through the world, the system continuously compares the **desired population** against the current population and performs **Spawn, Recycle, and Rebalance** operations to maintain local density.
-
-This keeps the active NPC workload tied primarily to **player-relevant areas and local density**, rather than directly scaling with the total size of the open world.
-
-### Mass Simulation & Representation
-
-NPCs inside the active population are simulated as lightweight **Mass Entities**, allowing large numbers of agents to exist without the cost of maintaining full Characters, Actor-based AI, animation, collision, and replication for every NPC.
-
-**Simulation LOD** and **Representation LOD** independently control how much simulation and visual representation each NPC receives based on its relevance to active players. Nearby NPCs can use higher-fidelity skeletal representations, while less relevant NPCs fall back to cheaper representations or are removed from visualization entirely.
-
-In multiplayer, the **server remains authoritative over NPC simulation and population decisions**, while Mass replication maintains the corresponding client-side entities and their local representations.
-
-This creates a scalable runtime hierarchy:
-
-**Population Management → Mass Simulation → LOD / Representation → Client Visualization**
+This keeps the active NPC workload primarily tied to **player-relevant areas and local population density**, rather than the total size of the world.
