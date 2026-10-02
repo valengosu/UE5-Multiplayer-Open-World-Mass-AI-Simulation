@@ -16,6 +16,8 @@ This demo solves that problem by keeping the wider population in lightweight Mas
 
 NPCs remain as lightweight **Mass Entities**, with **Simulation LOD** and **Representation LOD** controlling runtime cost. The server remains authoritative while Mass replication maintains corresponding client entities and representations.
 
+I extended the Mass replication strategy with **configurable synchronization thresholds**, allowing replication granularity and network traffic to be dynamically balanced for large NPC populations.
+
 ### Gameplay-Driven Mass ↔ RealActor Lifecycle
 
 Gameplay events dynamically upgrade relevant Mass NPCs into replicated **RealActors** with full movement, collision, animation, and AI, then return them to Mass simulation when the interaction ends.
@@ -31,7 +33,6 @@ Building this architecture for multiplayer required several framework-level fixe
 - **Client Entity Removal** — Fixed replicated Mass Entities remaining alive on remote clients after server-side destruction by correcting the client-bubble removal path.
 - **Multiplayer ZoneGraph Navigation** — Extended the default ZoneGraph navigation path to support multiple player-driven navigation contexts in a server-authoritative multiplayer world.
 - **Representation Release** — Traced a takeover failure to an internal issue in UE5.7's `ReleaseTemplateActorOrCancelSpawning()` and implemented a corrected release path for Mass → RealActor transitions.
-- I extended the Mass replication strategy with **configurable synchronization thresholds**, allowing replication granularity and network traffic to be dynamically balanced for large NPC populations.
 
 ## Seamless Mass ↔ RealActor Integration
 
