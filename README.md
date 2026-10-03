@@ -32,7 +32,7 @@ Building this architecture for multiplayer required several framework-level fixe
 
 - **Client Entity Removal** — Fixed replicated Mass Entities remaining alive on remote clients after server-side destruction by correcting the client-bubble removal path.
 - **Multiplayer ZoneGraph Navigation** — Extended the default ZoneGraph navigation path to support multiple player-driven navigation contexts in a server-authoritative multiplayer world.
-- **Representation Release** — Traced a takeover failure to an internal issue in UE5.7's `ReleaseTemplateActorOrCancelSpawning()` and implemented a corrected release path for Mass → RealActor transitions.
+- **Representation Release** — Traced a takeover failure to an internal issue in UE5.7's `ReleaseAnyActorOrCancelAnySpawning()` and implemented a corrected release path for Mass → RealActor transitions.
 
 ## Seamless Mass ↔ RealActor Integration
 
