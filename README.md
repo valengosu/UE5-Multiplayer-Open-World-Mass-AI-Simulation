@@ -51,3 +51,13 @@ Mass representations and RealActors use independent animation instances, so a di
 ## Tech Stack
 
 Unreal Engine 5.7 · C++ · Mass Entity · ZoneGraph · World Partition · HLOD · Multiplayer Replication · Behavior Tree
+
+## Performance Test
+
+~350 simulated NPCs at ~30 ms frame time under the tested configuration.
+
+https://github.com/user-attachments/assets/4c0dea8d-0f47-4df7-b3d8-6d4ea126c49e
+
+
+
+
