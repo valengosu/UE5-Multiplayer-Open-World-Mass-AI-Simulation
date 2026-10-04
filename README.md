@@ -54,9 +54,9 @@ Unreal Engine 5.7 · C++ · Mass Entity · ZoneGraph · World Partition · HLOD 
 
 ## Performance Test
 
-~Editor test 350 Mass Representations at ~30 ms frame time under the tested configuration.
+Unreal Editor stress test ~350 Mass Representations at ~30 ms frame time under the tested configuration.
+https://github.com/user-attachments/assets/dd783ea4-88c2-483e-bbe5-940c79b9fea2
 
-https://github.com/user-attachments/assets/4c0dea8d-0f47-4df7-b3d8-6d4ea126c49e
 
 
 
