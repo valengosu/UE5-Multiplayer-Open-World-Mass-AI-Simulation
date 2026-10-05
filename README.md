@@ -1,8 +1,6 @@
 # UE5 Multiplayer Open-World Mass AI Simulation
 
-(https://img.youtube.com/vi/AnK_NunFZH0/maxresdefault.jpg)](https://youtu.be/AnK_NunFZH0)
-
-**[▶ Watch the Full Demo on YouTube](https://youtu.be/AnK_NunFZH0)**
+[![Video](https://youtu.be/AnK_NunFZH0)
 
 A scalable multiplayer NPC simulation system combining dynamic population management, Mass simulation, and full gameplay interaction.
 
